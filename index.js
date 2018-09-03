@@ -8,6 +8,11 @@ var r;
 var g;
 var b;
 
+function preload() {
+    campfire = loadSound("assets/campfire-sound.mp3");
+    roaringFire = loadSound("assets/roaring-fire.mp3"); // "fire wood bonfire low eq" by homejrande https://freesound.org/people/homejrande/sounds/17375/
+}
+
 function setup () {
     mic = new p5.AudioIn();
     mic.start();
@@ -16,6 +21,9 @@ function setup () {
     counter = startingBrightness;
     triggerTurnOn();
     setBrightness();
+    campfire.loop();
+    roaringFire.loop();
+    roaringFire.setVolume(0);
 }
 
 function draw () { 
@@ -36,6 +44,7 @@ function micCheck() {
             setBrightness();
         }
         else if (vol > .13 && counter === 100) {
+            roaringFire.setVolume(100, 15);
             isLit = true;
             countdown = 1000;
         }
@@ -50,6 +59,8 @@ function micCheck() {
             countdown -= 1;
         }
         else {
+            roaringFire.setVolume(0, 15);
+            counter = 100;
             setBrightness();
             isLit = false;
         }
@@ -60,7 +71,7 @@ function micCheck() {
 function mouseReleased() {
 }
 
-function triggerFlash () {
+function triggerFlicker () {
 
   }
   
@@ -73,5 +84,5 @@ function setBrightness () {
 }
 
 function randomColor() {
-    
+
 }
