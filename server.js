@@ -29,14 +29,17 @@ http.listen(3000, function(){
 io.on('connection', function(socket){
     console.log('a user connected');
     socket.on('turn-on', function (){
-        console.log('turn light on'); 
+        console.log('turn light on');
+        api.setLightState(config.id, state.on(), function(err, result) {
+            if (err) throw err;
+            displayResult(result);
+        }); 
     });
     socket.on('set-brightness', function (brightness){
         console.log(brightness);
+        api.setLightState(config.id, state.brightness(brightness), function(err, result) {
+            if (err) throw err;
+            displayResult(result);
+        }); 
     });
   });
-
-api.setLightState(config.id, state.on(), function(err, result) {
-	if (err) throw err;
-	displayResult(result);
-});
