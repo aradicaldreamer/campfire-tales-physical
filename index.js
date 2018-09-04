@@ -40,13 +40,13 @@ function micCheck() {
     
     if (isLit === false) {
         if (vol > .13 && counter < 100) {
-            counter ++;
+            counter += 2;
             setBrightness();
         }
         else if (vol > .13 && counter === 100) {
-            roaringFire.setVolume(100, 15);
+            roaringFire.setVolume(100, 5);
             isLit = true;
-            countdown = 1000;
+            countdown = 500;
         }
         else if (counter > startingBrightness + 1) {
             counter -= 0.25;
@@ -59,7 +59,7 @@ function micCheck() {
             countdown -= 1;
         }
         else {
-            roaringFire.setVolume(0, 15);
+            roaringFire.setVolume(0, 5);
             counter = 100;
             setBrightness();
             isLit = false;
