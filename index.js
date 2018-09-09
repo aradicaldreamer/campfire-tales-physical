@@ -29,6 +29,7 @@ function setup () {
 function draw () { 
     micCheck();
     background(0);
+    roaringFire.setVolume(counter * 0.25);
 
     textSize(32);
     fill(255,0,0);
@@ -44,9 +45,9 @@ function micCheck() {
             setBrightness();
         }
         else if (vol > .13 && counter === 100) {
-            roaringFire.setVolume(100, 5);
+            //roaringFire.setVolume(100, 5);
             isLit = true;
-            countdown = 500;
+            countdown = 10;
         }
         else if (counter > startingBrightness + 1) {
             counter -= 0.25;
@@ -59,7 +60,7 @@ function micCheck() {
             countdown -= 1;
         }
         else {
-            roaringFire.setVolume(0, 5);
+            //roaringFire.setVolume(0, 5);
             counter = 100;
             setBrightness();
             isLit = false;
